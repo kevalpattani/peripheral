@@ -3,7 +3,7 @@
 module uart_rx(
     input  wire       clk,
     input  wire       rst,
-    input  wire       tx_input,
+    input  wire       rx_input,
     output reg [7:0]  rx_output
 );
 
@@ -76,7 +76,7 @@ module uart_rx(
 
                     2'b00:
                     begin
-                        if (tx_input)
+                        if (rx_input)
                         begin
                             next_state_DTFE <= 2'b00;
                             STBC            <= 1'b0;
@@ -92,7 +92,7 @@ module uart_rx(
                     begin
                         if (half_baud)
                         begin
-                            if (tx_input)
+                            if (rx_input)
                             begin
                                 next_state_DTFE <= 2'b00;
                                 STBC            <= 1'b0;
@@ -146,49 +146,49 @@ module uart_rx(
                     begin
                         next_state   <= 4'd1;
                         RCL          <= 1'b0;
-                        data_buf[0]  <= tx_input;
+                        data_buf[0]  <= rx_input;
                     end
 
                     4'd1:
                     begin
                         next_state   <= 4'd2;
-                        data_buf[1]  <= tx_input;
+                        data_buf[1]  <= rx_input;
                     end
 
                     4'd2:
                     begin
                         next_state   <= 4'd3;
-                        data_buf[2]  <= tx_input;
+                        data_buf[2]  <= rx_input;
                     end
 
                     4'd3:
                     begin
                         next_state   <= 4'd4;
-                        data_buf[3]  <= tx_input;
+                        data_buf[3]  <= rx_input;
                     end
 
                     4'd4:
                     begin
                         next_state   <= 4'd5;
-                        data_buf[4]  <= tx_input;
+                        data_buf[4]  <= rx_input;
                     end
 
                     4'd5:
                     begin
                         next_state   <= 4'd6;
-                        data_buf[5]  <= tx_input;
+                        data_buf[5]  <= rx_input;
                     end
 
                     4'd6:
                     begin
                         next_state   <= 4'd7;
-                        data_buf[6]  <= tx_input;
+                        data_buf[6]  <= rx_input;
                     end
 
                     4'd7:
                     begin
                         next_state   <= 4'd8;
-                        data_buf[7]  <= tx_input;
+                        data_buf[7]  <= rx_input;
                     end
 
                     4'd8:
