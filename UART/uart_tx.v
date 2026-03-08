@@ -38,9 +38,11 @@ module uart_tx(input wire clk,
                     baud_counter <= baud_counter + 1;
                 end                             
               end
-              
+
+  
               assign baud_clock = (baud_counter == baud_rate - 1);
-              
+
+  
               always@(posedge clk or posedge rst) // the main fsm logic with 11 stages 4'd0 to 4'd10
               begin
                 if (rst)
